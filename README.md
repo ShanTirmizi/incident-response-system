@@ -35,8 +35,11 @@ cd backend
 python -m venv venv              # First time only
 source venv/bin/activate
 pip install -r requirements.txt  # First time only
+cp .env.example .env             # First time only, then add your API key
 uvicorn main:app --reload
 ```
+
+Edit `backend/.env` and add your OpenAI API key.
 
 The API will start at http://localhost:8000
 
@@ -44,11 +47,17 @@ The API will start at http://localhost:8000
 
 ```bash
 cd frontend
-npm install      # First time only
+npm install                      # First time only
+cp .env.example .env.local       # First time only
 npm run dev
 ```
 
 The UI will be available at http://localhost:3000
+
+**Note:** Port 3000 must be free. If it's in use, run:
+```bash
+lsof -ti :3000 | xargs kill -9
+```
 
 ## API Endpoints
 
@@ -70,12 +79,12 @@ The sample transcript shows Greg reporting his **third fall this week**. Per pol
 
 #### Core Capabilities
 
-| Capability                      | Description                                                                                 |
-|---------------------------------|---------------------------------------------------------------------------------------------|
-| **Service User Risk Profiles**  | Persistent incident history with running risk score (0-100)                                 |
-| **Pattern Detection**           | Frequency acceleration, severity escalation, time-of-day patterns                           |
-| **Predictive Alerts**           | Automated warnings when risk thresholds crossed                                             |
-| **Organization Analytics**      | Cross-user pattern detection (e.g., multiple falls at same location = environmental hazard) |
+| Capability                     | Description                                                                                 |
+|--------------------------------|---------------------------------------------------------------------------------------------|
+| **Service User Risk Profiles** | Persistent incident history with running risk score (0–100)                                 |
+| **Pattern Detection**          | Frequency acceleration, severity escalation, time-of-day patterns                           |
+| **Predictive Alerts**          | Automated warnings when risk thresholds are crossed                                         |
+| **Organization Analytics**     | Cross-user pattern detection (e.g. multiple falls at same location = environmental hazard)  |
 
 #### Example Alert
 ```
